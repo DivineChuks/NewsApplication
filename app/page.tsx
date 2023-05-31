@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <>
       <Hero />
-      <Latest />
+      <Latest title="Our latest post" />
       <Recommended />
       <Subscription />
     </>

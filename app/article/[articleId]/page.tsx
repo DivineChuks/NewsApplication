@@ -8,18 +8,18 @@ import React from "react";
 const page = () => {
   return (
     <>
-    <div className="px-[6.5rem] bg-[#f9f9f9] text-dark py-[5rem]">
-      <div className="flex justify-between items-center gap-[4rem] w-full">
-        <div className="flex flex-col w-1/2">
+    <div className="bg-[#f9f9f9] text-dark px-[2rem] md:px-[6.5rem] text-dark py-[5rem]">
+      <div className="flex flex-col md:flex-row justify-between md:gap-[4rem] w-full items-center gap-[4rem]">
+        <div className="flex flex-col w-full md:w-1/2">
           <div className="flex gap-4">
             <p>Innovation</p>
             <p>2 hours</p>
           </div>
-          <h2 className="text-[3.2rem] mt-[30px] leading-[4rem] font-semibold">
+          <h2 className="text-[2.5rem] md:text-[3.2rem] mt-[30px] leading-[3.5rem] md:leading-[4rem] font-semibold">
             Charge Two Devices at the Same Time With This Magnetic Wireless
             Charging Dock
           </h2>
-          <div className="flex mt-[50px]">
+          <div className="flex mt-[50px] w-full">
             <div className="flex gap-6">
               <div>
                 <Image
@@ -27,7 +27,7 @@ const page = () => {
                   alt="avatar"
                   width={48}
                   height={48}
-                  className="rounded-full"
+                  className="rounded-full w-full"
                 />
               </div>
               <p className="mt-4 text-[16px] leading-[19.2px] font-normal">
@@ -36,11 +36,11 @@ const page = () => {
             </div>
           </div>
         </div>
-        <div className="flex-col p-[24px] w-1/2">
+        <div className="flex-col p-0 md:p-[24px] w-full md:w-1/2">
           <Image src="/post.jpg" alt="post" width={600} height={600} />
         </div>
       </div>
-      <div className="flex gap-6 items-center">
+      <div className="flex mt-[15px] md:mt-0 gap-6 items-center">
         <div className="flex items-center gap-1">
           <MdOutlineFavoriteBorder />
           <p className="text-[16px] font-normal">521K</p>

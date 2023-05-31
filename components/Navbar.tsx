@@ -1,119 +1,148 @@
-'use client'
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { FaBars } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
 import React, { useState } from "react";
+import { BiChevronDown } from "react-icons/bi";
+import { AiOutlineSearch } from "react-icons/ai";
 
 interface Link {
-  label: string,
-  link: string
+  label: string;
+  link: string;
 }
 
 const Navbar = () => {
+  const [nav, setNav] = useState(false);
+  const [search, setSearch] = useState(false);
 
-  const [nav, setNav] = useState(false)
-
-  const links:Link[] = [
+  const links: Link[] = [
     {
-      label: 'Home',
-      link: 'home'
+      label: "Home",
+      link: "home",
     },
     {
-      label: 'Latest',
-      link: 'latest'
+      label: "Latest",
+      link: "latest",
     },
     {
-      label: 'Recommended',
-      link: 'recommended'
+      label: "Recommended",
+      link: "recommended",
     },
     {
-      label: 'Newsletter',
-      link: 'newsletter'
+      label: "Articles",
+      link: "/articles",
     },
-
-  ]
+  ];
   return (
     <>
-      <div className="bg-lightOrange flex justify-between h-10 items-center px-4 md:px-[6.5rem]">
-        <span className="flex text-white text-sm gap-4">
+      {/* Desktop Menu */}
+      <div className="bg-lightOrange flex justify-between h-[50px] items-center px-4 md:px-[6.5rem]">
+        <div className="flex items-center text-white text-[16px] font-medium gap-4">
           <p>News</p>
           <p>Innovation</p>
           <p>Science</p>
           <p>Industry</p>
-          <p>More</p>
-        </span>
-        <span className="text-white text-sm">social icons</span>
+          <p className="flex items-center cursor-pointer">
+            More <BiChevronDown size={20} />
+          </p>
+        </div>
+        <div className="hidden md:flex gap-4 text-white text-[16px] font-medium">
+          <span>IG</span>
+          <span>TW</span>
+          <span>FB</span>
+          <span>YT</span>
+        </div>
       </div>
       <div className="w-full grid h-[5rem] overflow-x-hidden">
-            <div className="flex px-4 md:px-[6.5rem] w-full justify-between items-center">
-                <Link href="/">
-                    <Image alt="logo" src="/logo.svg" width={80} height={80} />
-                </Link>
-                <ul className="md:flex hidden items-center gap-8">
-                  {links.map((link:Link) => (
-                    <li key={link.link}>{link.label}</li>
-                  ))}
-                </ul>
-                <div className="hidden md:flex">
-                  <button>Subscribe</button>
-                </div>
-                <div className="md:hidden">
-          <div className="cursor-pointer mr-4" onClick={() => setNav(true)}>
-            <FaBars size={25} style={{ color: "#0D1326" }} />
+        <div className="flex px-6 md:px-[6.5rem] w-full justify-between items-center">
+          <Link href="/">
+            <Image alt="logo" src="/logo.png" width={135} height={56} />
+          </Link>
+          <ul className="md:flex hidden items-center gap-10">
+            {links.map((link: Link) => (
+              <li key={link.link} className="text-[16px] font-medium text-dark">
+                {link.label}
+              </li>
+            ))}
+          </ul>
+          <div className="hidden md:flex gap-8 items-center">
+            {!search && (
+              <AiOutlineSearch
+                size={18}
+                className="cursor-pointer"
+                onClick={() => setSearch(true)}
+              />
+            )}
+            {search && (
+              <input
+                placeholder="search"
+                className="border border-gray-200 w-[200px] rounded-lg px-4 py-[10px] focus:outline-none"
+              />
+            )}
+            <button className="bg-lightOrange text-[16px] font-medium px-[24px] py-[12px] rounded-lg text-white">
+              Subscribe
+            </button>
           </div>
-          {/* Mobile Menu */}
-          <div
-            className={
-              nav
-                ? "w-full h-full z-50 fixed left-0 top-0 bg-gray-900/70 text-white md:hidden backdrop-blur"
-                : ""
-            }
-          >
+          <div className="md:hidden">
+            <div className="cursor-pointer" onClick={() => setNav(true)}>
+              <FaBars size={25} style={{ color: "#0D1326" }} />
+            </div>
+            {/* Mobile Menu */}
             <div
               className={
                 nav
-                  ? "fixed w-4/5 bg-darkBlue left-0 top-0 text-white h-full p-10 pt-10 ease-in duration-500"
-                  : "fixed p-5 top-0 left-[-100%] duration-500 h-full ease-in"
+                  ? "w-full h-full z-50 fixed left-0 top-0 bg-gray-900/70 text-white md:hidden backdrop-blur"
+                  : ""
               }
             >
-              <div className="w-full flex justify-between items-center mb-[5rem]">
-                <div
-                  className="cursor-pointer p-0"
-                  onClick={() => setNav(false)}
-                >
-                  <Image src="/logo.svg" alt="site logo" width={60} height={60} />
+              <div
+                className={
+                  nav
+                    ? "fixed w-4/5 bg-[#182243] left-0 top-0 text-white h-full p-10 pt-10 ease-in duration-500"
+                    : "fixed p-5 top-0 left-[-100%] duration-500 h-full ease-in"
+                }
+              >
+                <div className="w-full flex justify-between items-center mb-[2rem]">
+                  <div
+                    className="cursor-pointer p-0"
+                    onClick={() => setNav(false)}
+                  >
+                    <Image
+                      src="/logo.png"
+                      alt="site logo"
+                      width={120}
+                      height={50}
+                    />
+                  </div>
+                  <div
+                    className="p-4 cursor-pointer"
+                    onClick={() => setNav(false)}
+                  >
+                    <FaTimes size={30} />
+                  </div>
                 </div>
-                <div
-                  className="p-4 cursor-pointer"
-                  onClick={() => setNav(false)}
-                >
-                  <FaTimes size={30} />
-                </div>
-              </div>
-              <div className="flex flex-col text-white justify-between h-fit">
-                <ul className="capitalize mb-8">
-                  {links.map((link:Link) => (
-                    <li
-                      key={link.link}
-                      className="text-[1.6rem] tracking-wider py-8 cursor-pointer"
-                    >
+                <div className="flex flex-col text-white justify-between h-fit">
+                  <ul className="capitalize mb-4">
+                    {links.map((link: Link) => (
+                      <li
+                        key={link.link}
+                        className="text-[15px] font-medium text-dark py-4 cursor-pointer"
+                      >
                         {link.label}
-                    </li>
-                  ))}
-                </ul>
-                <button
-                  className="bg-white text-dark py-[1.4rem] px-[3.2rem] rounded-lg font-rubik
-                  font-bold
-                  text-[1.6rem]"
-                >
-                  subscribe
-                </button>
+                      </li>
+                    ))}
+                  </ul>
+                  <button
+                    className="bg-lightOrange text-white px-[24px] py-[12px] w-full rounded-lg font-medium text-[16px]"
+                  >
+                    subscribe
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-            </div>
       </div>
     </>
   );
