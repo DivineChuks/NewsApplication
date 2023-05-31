@@ -2,3 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .pagination li {
+    display: flex;
+    margin: 0 6px;
+  }
+  
+  .pagination a {
+    display: flex;
+    padding: 4px 8px;
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  .pagination a:hover {
+    display: flex;
+    justify-content: center;
+    padding: 4px 8px;
+    border-radius: 8px;
+    align-items: center;
+    color: #fff;
+  }
+  
+  .pagination .active a {
+    background-color: #109BE9;
+    display: flex;
+    justify-content: center;
+    padding: 4px 8px;
+    border-radius: 8px;
+    align-items: center;
+    color: #fff;
+  }
+
+  .pagination li:not(.active){
+    background-color: #F36326;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 8px;
+}
+  
+  .pagination-previous,
+  .pagination-next {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 8px;
+    border-radius: 8px;
+    background-color: #F36326;
+    color: #fff !important;
+  }
+  
+  .pagination-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
