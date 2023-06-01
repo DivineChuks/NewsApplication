@@ -19,7 +19,7 @@ interface NewsState {
   };
 
 export const getBusinessNews = createAsyncThunk<NewsState, undefined>(
-  "news",
+  "business news",
   async (_, thunkApi) => {
     try {
       return await newsServices.businessNews();
@@ -39,7 +39,7 @@ export const getBusinessNews = createAsyncThunk<NewsState, undefined>(
 );
 
 const businessNewsSlice = createSlice({
-  name: "latestNews",
+  name: "Business News",
   initialState,
   reducers: {
   },

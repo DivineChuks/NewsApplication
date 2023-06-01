@@ -18,11 +18,11 @@ interface NewsState {
     message: "",
   };
 
-export const getLatestNews = createAsyncThunk<NewsState, undefined>(
+export const getLatestNews = createAsyncThunk<NewsState, string | undefined>(
   "news",
-  async (_, thunkApi) => {
+  async (source, thunkApi) => {
     try {
-      return await newsServices.latestNews();
+      return await newsServices.latestNews(source);
     } catch (error: any) {
       const message =
         (error.response &&

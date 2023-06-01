@@ -1,67 +1,93 @@
-import Image from "next/image";
 import React from "react";
-
-const MAX_CATEGORY_LENGTH = 10;
+import type { RootState } from "@/redux/store";
+import { useSelector } from "react-redux";
+import { MdOutlineFavoriteBorder } from "react-icons/md";
+import { BiMessageRounded } from "react-icons/bi";
+import { AiOutlineShareAlt } from "react-icons/ai";
+import { format } from "date-fns";
 
 const Hero = () => {
+  const businessNews = useSelector(
+    (state: RootState) => state.business.businessNews?.articles
+  );
+
+  const heroArticle = useSelector(
+    (state: RootState) => state.business.businessNews?.articles[0]
+  );
+
   return (
-    <div className="px-[2rem] md:px-[6.5rem] bg-[#f9f9f9] text-dark py-[5rem] flex-col">
+    <div className="px-[2rem] md:px-[6.5rem] bg-[#f9f9f9] text-dark py-[6rem] flex-col">
       <div className="flex flex-col md:flex-row justify-between gap-[6rem] md:gap-[4rem] w-full">
         <div className="flex flex-col w-full md:w-1/2">
-          <div className="flex gap-4">
-            <p>Innovation</p>
-            <p>2 hours</p>
-          </div>
-          <h2 className="text-[2.5rem] md:text-[3.2rem] mt-[30px] leading-[3.5rem] md:leading-[4rem] font-semibold">
-            Charge Two Devices at the Same Time With This Magnetic Wireless
-            Charging Dock
-          </h2>
-          <div className="flex mt-[50px] gap-6 justify-between">
-            <div className="">
-              <div>
-                <Image src="/card.png" alt="avatar" width={120} height={80} />
-              </div>
-              <p className="mt-4 text-[16px] leading-[19.2px] max-w-[250px] font-normal">
-                Charge Two Devices at the Same Time With This Magnetic Wireless
-                Charging Dock
+          <div>
+            <div className="md:mt-[2rem]">
+              <img
+                src={heroArticle?.urlToImage}
+                className="w-full h-[350px] object-cover"
+              />
+            </div>
+            <h2 className="text-[1.5rem] md:text-[2rem] mt-[20px] mb-[10px] leading-[2rem] md:leading-[3rem] font-semibold">
+              {heroArticle?.title}
+            </h2>
+            <div
+              className="flex items-center bg-lightOrange text-white mb-[15px] rounded-0 px-[10px] py-[6px]"
+              style={{ width: "max-content" }}
+            >
+              <p className="text-white text-[10px] uppercase font-semibold">
+                {heroArticle?.source.name}
               </p>
             </div>
-            <div className="">
-              <div>
-                <Image src="/card.png" alt="avatar" width={120} height={80} />
-              </div>
-              <p className="mt-4 text-[16px] leading-[19.2px] max-w-[250px] font-normal">
-                Tiny moon rover could be a stepping stone to Mars
-              </p>
+            <div className="flex gap-4 md:mb-[20px] ">
+              <span className="text-[#9A9AB0] text-[12px]">
+                {heroArticle?.author} &nbsp;
+              </span>
+              {heroArticle?.publishedAt && (
+                <span className="text-[#9A9AB0] text-[12px]">
+                  {format(new Date(heroArticle?.publishedAt), "MMM dd yyyy")}
+                </span>
+              )}
             </div>
           </div>
         </div>
-        <div className="flex-col mt-[1rem] md:mt-0 p-[24px] w-full md:w-1/2">
+        <div className="flex-col p-0 md:p-[24px] w-full md:w-1/2">
           <h2 className="text-[25px] font-semibold z-10">BUSINESS NEWS</h2>
-          <div className="flex items-center gap-6 mt-[24px]">
-            <div>
-              <Image src="/card.png" alt="avatar" width={144} height={104} />
-            </div>
-            <div className="flex gap-[16px] flex-col">
-              <div
-                className="flex items-center bg-lightOrange text-white rounded-0 px-[10px] py-[8px]"
-                style={{ width: "max-content" }}
-              >
-                <p className="text-white text-[10px] uppercase font-semibold">
-                  SPORTS
-                </p>
+          {businessNews?.map((news, index) => (
+            <div
+              key={index}
+              className="grid md:grid-cols-2 gap-8 items-center mt-[24px]"
+            >
+              <div className="">
+                <img
+                  src={news?.urlToImage || "/card.png"}
+                  alt="avatar"
+                  className="w-full h-[200px] md:h-[150px] object-cover"
+                />
               </div>
-              <a href="#" className="hover:underline cursor-pointer">
-              <p className="text-[16px] font-semibold leading-[19px]">
-                7 Ways You Can Reduce Climate
-              </p>
-              </a>
-              <div className="flex text-[12px] font-semibold gap-4">
-                <p>Innovation</p>
-                <p>2 hours</p>
+              <div className="flex gap-[16px] flex-col">
+                <div
+                  className="flex items-center bg-lightOrange text-white rounded-0 px-[10px] py-[6px]"
+                  style={{ width: "max-content" }}
+                >
+                  <p className="text-white text-[10px] uppercase font-semibold">
+                    {news?.source.name}
+                  </p>
+                </div>
+                <a href={news.url} className="hover:underline cursor-pointer">
+                  <p className="text-[16px] font-semibold leading-[19px]">
+                    {news?.title}
+                  </p>
+                </a>
+                <div>
+                  <span className="text-[#9A9AB0] text-[12px]">
+                    {news.author} &nbsp;
+                  </span>
+                  <span className="text-[#9A9AB0] text-[12px] mt-2">
+                    {format(new Date(news.publishedAt), "MMM dd yyyy")}
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
