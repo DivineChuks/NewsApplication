@@ -1,12 +1,21 @@
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-import React from 'react'
-import Subscription from '@/components/Subscription'
-import Hero from '@/components/Hero'
-import Latest from '@/components/Latest'
-import Recommended from '@/components/Recommended'
+"use client";
+import React, { useEffect } from "react";
+import Subscription from "@/components/Subscription";
+import type { AppDispatch } from "@/redux/store";
+import { useDispatch } from "react-redux";
+import Hero from "@/components/Hero";
+import Latest from "@/components/Latest";
+import Recommended from "@/components/Recommended";
+import { getLatestNews } from "@/redux/features/latestNewsSlice";
+import { getBusinessNews } from "@/redux/features/businesNewsSlice";
 
 const Home = () => {
+  const dispatch: AppDispatch = useDispatch();
+  // Dispatch Business News and Latest News on page load
+  useEffect(() => {
+    dispatch(getLatestNews());
+    dispatch(getBusinessNews())
+  }, [dispatch]);
   return (
     <>
       <Hero />
@@ -14,7 +23,7 @@ const Home = () => {
       <Recommended />
       <Subscription />
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
