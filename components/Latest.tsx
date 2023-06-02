@@ -20,8 +20,9 @@ interface newsProp {
 const MAX_TITLE_LENGTH = 50;
 const MAX_DESCRIPTION_LENGTH = 130;
 const MAX_CATEGORY_LENGTH = 10;
-const MAX_AUTHOR_LENGTH = 20
+const MAX_AUTHOR_LENGTH = 20;
 
+// News Source Options
 const newsSources: newsProp[] = [
   { id: "bbc-news", name: "BBC NEWS" },
   { id: "cnn", name: "CNN" },
@@ -36,26 +37,34 @@ const Latest: React.FC<titleProp> = ({ title }) => {
 
   const { isLoading } = useSelector((state: RootState) => state.news);
 
+  // Selecting Latest News From Redux Store
   const latestNews = useSelector(
     (state: RootState) => state.news.latestNews?.articles
   );
+
   const [selectedSource, setSelectedSource] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
+
   const itemsPerPage = 10;
+
+  // Function to handle Pagination
   const handlePageChange = (selectedPage: any) => {
     setCurrentPage(selectedPage.selected);
   };
+
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
   const paginatedNews = latestNews?.slice(startIndex, endIndex);
 
-  const handleSourceChange = (e) => {
+  // Function to Filter Latest News By Select
+  const handleSourceChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = e.target.value;
     setSelectedSource(selectedValue);
     dispatch(getLatestNews(selectedValue));
   };
 
+  //Function To Dispatch All Latest News
   const handleAllPosts = () => {
     dispatch(getLatestNews(""));
     setSelectedSource("");
@@ -73,7 +82,11 @@ const Latest: React.FC<titleProp> = ({ title }) => {
           >
             <option>Filter Source</option>
             {newsSources.map((source) => (
-              <option key={source.id} value={source.id} className="text-[16px] font-medium">
+              <option
+                key={source.id}
+                value={source.id}
+                className="text-[16px] font-medium"
+              >
                 {source.name}
               </option>
             ))}
@@ -128,9 +141,12 @@ const Latest: React.FC<titleProp> = ({ title }) => {
                 }}
               ></p>
               <div>
-                <p className="text-[#9A9AB0] text-[12px]"> {news.author?.length > MAX_AUTHOR_LENGTH
+                <p className="text-[#9A9AB0] text-[12px]">
+                  {" "}
+                  {news.author?.length > MAX_AUTHOR_LENGTH
                     ? `${news.author.substring(0, MAX_AUTHOR_LENGTH)}...`
-                    : news.author}</p>
+                    : news.author}
+                </p>
                 <p className="text-[#9A9AB0] text-[12px] mt-2">
                   {format(new Date(news.publishedAt), "MMM dd yyyy")}
                 </p>

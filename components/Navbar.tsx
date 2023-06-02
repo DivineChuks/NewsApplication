@@ -16,6 +16,7 @@ interface Link {
 
 const Navbar = () => {
   const dispatch: AppDispatch = useDispatch();
+
   const [nav, setNav] = useState(false);
   const [searchNews, setSearchNews] = useState("");
 
@@ -29,8 +30,8 @@ const Navbar = () => {
       link: "latest",
     },
     {
-      label: "Recommended",
-      link: "recommended",
+      label: "Top Stories",
+      link: "top-stories",
     },
     {
       label: "Newsletter",
@@ -38,8 +39,7 @@ const Navbar = () => {
     },
   ];
 
-  //Search Latest News Function
-
+  // Function To Search Latest News By Source.
   const handleSearchNews = () => {
     dispatch(getLatestNews(searchNews.toLowerCase()));
     setSearchNews("");
@@ -91,14 +91,14 @@ const Navbar = () => {
               placeholder="Search By Source"
               className="border border-gray-200 w-[200px] rounded-lg rounded-r-none px-4 py-[10px] focus:outline-none"
             />
-          <ScrollLink to="latest" spy={true} smooth={true} duration={500}>
-            <button
-              onClick={handleSearchNews}
-              className="bg-lightOrange text-[16px] font-medium px-[18px] py-[10px] rounded-lg rounded-l-none text-white"
-            >
-               Search
-            </button>
-            </ScrollLink > 
+            <ScrollLink to="latest" spy={true} smooth={true} duration={500}>
+              <button
+                onClick={handleSearchNews}
+                className="bg-lightOrange text-[16px] font-medium px-[18px] py-[10px] rounded-lg rounded-l-none text-white"
+              >
+                Search
+              </button>
+            </ScrollLink>
           </div>
           <div className="md:hidden">
             <div className="cursor-pointer" onClick={() => setNav(true)}>
@@ -115,7 +115,7 @@ const Navbar = () => {
               <div
                 className={
                   nav
-                    ? "fixed w-4/5 bg-[#182243] left-0 top-0 text-white h-full p-10 pt-10 ease-in duration-500"
+                    ? "fixed w-4/5 bg-[#182243] left-0 top-0 text-white h-full pr-10 pl-5 pt-8 ease-in duration-500"
                     : "fixed p-5 top-0 left-[-100%] duration-500 h-full ease-in"
                 }
               >
@@ -131,10 +131,7 @@ const Navbar = () => {
                       height={50}
                     />
                   </div>
-                  <div
-                    className="p-4 cursor-pointer"
-                    onClick={() => setNav(false)}
-                  >
+                  <div className="cursor-pointer" onClick={() => setNav(false)}>
                     <FaTimes size={30} />
                   </div>
                 </div>
@@ -157,9 +154,25 @@ const Navbar = () => {
                       </li>
                     ))}
                   </ul>
-                  <button className="bg-lightOrange text-white px-[24px] py-[12px] w-full rounded-lg font-medium text-[16px]">
-                    subscribe
-                  </button>
+                  <input
+                    value={searchNews}
+                    onChange={(e) => setSearchNews(e.target.value)}
+                    placeholder="Search By Source"
+                    className="border border-gray-200 text-dark w-full rounded-0 mb-2 px-4 py-[10px] focus:outline-none"
+                  />
+                  <ScrollLink
+                    to="latest"
+                    spy={true}
+                    smooth={true}
+                    duration={500}
+                  >
+                    <button
+                      onClick={handleSearchNews}
+                      className="bg-lightOrange text-white px-[24px] py-[12px] w-full rounded-0 font-medium text-[16px]"
+                    >
+                      search
+                    </button>
+                  </ScrollLink>
                 </div>
               </div>
             </div>

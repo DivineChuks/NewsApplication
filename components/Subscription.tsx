@@ -9,18 +9,21 @@ const Subscription = () => {
             Sign Up For Our Newsletters
           </h2>
           <p className="text-[16px] w-full md:w-1/2 font-normal">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod.
+            Stay updated with the latest news, exclusive offers, and exciting
+            updates from our website by subscribing to our newsletter. Get the
+            inside scoop on new articles, trending topics, insightful
+            interviews, and much more delivered straight to your inbox
           </p>
         </div>
         <div className="w-full mt-4 md:mt-[4rem] flex-col flex md:flex-row gap-[8px] items-center">
-            <input
-              className="w-full md:w-[80%] mb-2 md:mb-0 mt-1 focus:outline-none text-[14px] px-[1.5rem] py-[1rem] text-[#000000E5] font-normal rounded-md"
-              placeholder="input your email address here"
-            />
-            <button className="bg-lightOrange md:flex-grow w-full md:w-auto px-[15px] py-[14px] md:px-[24px] rounded-md md:py-[1rem]">Subscribe Now</button>
-          </div>
+          <input
+            className="w-full md:w-[80%] mb-2 md:mb-0 mt-1 focus:outline-none text-[14px] px-[1.5rem] py-[1rem] text-[#000000E5] font-normal rounded-md"
+            placeholder="input your email address here"
+          />
+          <button className="bg-lightOrange md:flex-grow w-full md:w-auto px-[15px] py-[14px] md:px-[24px] rounded-md md:py-[1rem]">
+            Subscribe Now
+          </button>
+        </div>
       </div>
     </div>
   );

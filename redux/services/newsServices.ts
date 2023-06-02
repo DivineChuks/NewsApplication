@@ -7,8 +7,10 @@ const category = "business";
 const pageLimit = 3;
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
+// Get Latest News Async Function Using Axios
 const latestNews = async (sourceQuery: string) => {
   let url: string;
+
   if (sourceQuery) {
     url = `${baseUrl}${endpoint}?sources=${sourceQuery}&apiKey=${apiKey}`;
   } else {
@@ -18,6 +20,8 @@ const latestNews = async (sourceQuery: string) => {
   const res = await axios.get(url);
   return res.data;
 };
+
+// Get Business News Async Function Using Axios For Hero Section.
 
 const businessNews = async () => {
   const res = await axios.get(

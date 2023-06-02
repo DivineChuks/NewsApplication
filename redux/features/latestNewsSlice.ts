@@ -18,7 +18,7 @@ const initialState: NewsState = {
 };
 
 export const getLatestNews = createAsyncThunk<NewsState, string>(
-  "news",
+  "Latest News",
   async (sourceQuery, thunkApi) => {
     try {
       return await newsServices.latestNews(sourceQuery);
@@ -29,7 +29,6 @@ export const getLatestNews = createAsyncThunk<NewsState, string>(
           error.response.data.message) ||
         error.message ||
         error.toString();
-      console.log(message);
       return thunkApi.rejectWithValue({
         message,
       });
@@ -38,17 +37,9 @@ export const getLatestNews = createAsyncThunk<NewsState, string>(
 );
 
 const latestNewsSlice = createSlice({
-  name: "latestNews",
+  name: "latest News",
   initialState,
-  reducers: {
-    reset: (state) => {
-      (state.latestNews = null),
-        (state.isLoading = false),
-        (state.isSuccess = false),
-        (state.isError = false),
-        (state.message = "");
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(getLatestNews.pending, (state) => {
@@ -69,6 +60,6 @@ const latestNewsSlice = createSlice({
   },
 });
 
-export const { reset } = latestNewsSlice.actions;
+export const { } = latestNewsSlice.actions;
 
 export default latestNewsSlice.reducer;

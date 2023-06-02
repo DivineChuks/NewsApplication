@@ -11,8 +11,8 @@ import Recommended from "@/components/Recommended";
 
 const Home = () => {
   const dispatch: AppDispatch = useDispatch();
-  // Dispatch Business News and Latest News on page load
 
+  // Dispatch Business News and Latest News on page load
   useEffect(() => {
     dispatch(getLatestNews(''));
   }, [dispatch])

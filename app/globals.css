@@ -8,8 +8,6 @@ html, body {
   overflow-x: hidden;
 }
 
-
-
 .pagination {
     display: flex;
     justify-content: flex-end;

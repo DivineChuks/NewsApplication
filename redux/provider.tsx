@@ -6,7 +6,6 @@ interface ProviderProps {
     children: React.ReactNode
 }
 
-
 const Providers:React.FC<ProviderProps> = ({children}) => {
   return (
     <Provider store={store}>{children}</Provider>

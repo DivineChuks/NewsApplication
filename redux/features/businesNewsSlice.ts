@@ -1,25 +1,24 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import newsServices from "../services/newsServices";
 
-
 interface NewsState {
-    businessNews: any
-    isLoading: boolean;
-    isSuccess: boolean;
-    isError: boolean;
-    message: string;
-  }
-  
-  const initialState: NewsState = {
-    businessNews: null,
-    isLoading: false,
-    isSuccess: false,
-    isError: false,
-    message: "",
-  };
+  businessNews: any;
+  isLoading: boolean;
+  isSuccess: boolean;
+  isError: boolean;
+  message: string;
+}
+
+const initialState: NewsState = {
+  businessNews: null,
+  isLoading: false,
+  isSuccess: false,
+  isError: false,
+  message: "",
+};
 
 export const getBusinessNews = createAsyncThunk<NewsState, undefined>(
-  "business news",
+  "Business News",
   async (_, thunkApi) => {
     try {
       return await newsServices.businessNews();
@@ -30,7 +29,6 @@ export const getBusinessNews = createAsyncThunk<NewsState, undefined>(
           error.response.data.message) ||
         error.message ||
         error.toString();
-      console.log(message);
       return thunkApi.rejectWithValue({
         message,
       });
@@ -41,8 +39,7 @@ export const getBusinessNews = createAsyncThunk<NewsState, undefined>(
 const businessNewsSlice = createSlice({
   name: "Business News",
   initialState,
-  reducers: {
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(getBusinessNews.pending, (state) => {
@@ -63,6 +60,6 @@ const businessNewsSlice = createSlice({
   },
 });
 
-export const { } = businessNewsSlice.actions;
+export const {} = businessNewsSlice.actions;
 
 export default businessNewsSlice.reducer;

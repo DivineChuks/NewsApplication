@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import newsReducer from "./features/latestNewsSlice";
+import latestNewsReducer from "./features/latestNewsSlice";
 import businessNewsReducer from "./features/businesNewsSlice"
 
 export const store = configureStore({
   reducer: {
-    news: newsReducer,
+    news: latestNewsReducer,
     business: businessNewsReducer
   },
 });

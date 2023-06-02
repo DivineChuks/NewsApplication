@@ -1,9 +1,6 @@
-import Image from "next/image";
 import type { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
 import { format } from "date-fns";
-
-
 
 const MAX_DESCRIPTION_LENGTH = 130;
 const MAX_AUTHOR_LENGTH = 20
@@ -15,11 +12,11 @@ const Recommended = () => {
 
   return (
     <div
-      id="recommended"
+      id="top-stories"
       className="pt-[4.5rem] bg-[#f9f9f9] pb-[6.5rem] px-[2rem] md:px-[6.5rem]"
     >
       <div className="flex mb-[65px]">
-        <h2 className="text-[31px] font-semibold">Recommended For You</h2>
+        <h2 className="text-[31px] font-semibold">Top Stories</h2>
       </div>
       <div className="grid grid-cols-1 gap-[1rem] md:grid-cols-3">
         {businessNews?.map((news, index) => (
