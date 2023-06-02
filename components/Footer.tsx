@@ -1,5 +1,5 @@
 import Image from "next/image";
-import {FiChevronDown} from 'react-icons/fi'
+import { FiChevronDown } from "react-icons/fi";
 
 const Footer = () => {
   return (
@@ -8,9 +8,10 @@ const Footer = () => {
         <div className="flex col-span-2 flex-col gap-4 md:pl-[6.5rem]">
           <Image src="/logo.png" alt="footer" width={120} height={80} />
           <p className="text-[16px] text-[#515151] leading-[20px] font-normal w-full md:w-[300px]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod.
+            Stay connected with us to receive the latest updates and exclusive
+            offers. Join our newsletter and be the first to know about the most
+            recent news, articles, and promotions. Don't miss out on the
+            exciting content and special deals.
           </p>
         </div>
         <div className="flex flex-col w-full gap-6 pt-8 md:pt-0 md:pl-[4rem]">
@@ -77,7 +78,8 @@ const Footer = () => {
           Copyright Tanash Air studio
         </p>
         <div className=" flex items-center gap-1 md:pr-[6.5rem]">
-          <span className="text-[16px] font-semibold text-dark">EN</span ><FiChevronDown className="cursor-pointer" />
+          <span className="text-[16px] font-semibold text-dark">EN</span>
+          <FiChevronDown className="cursor-pointer" />
         </div>
       </div>
     </div>

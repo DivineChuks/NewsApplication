@@ -24,7 +24,7 @@ const Home = () => {
   return (
     <>
       <Hero />
-      <Latest title="Our latest post" />
+      <Latest title="Latest Posts" />
       <Recommended />
       <Subscription />
     </>
