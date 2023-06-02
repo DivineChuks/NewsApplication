@@ -7,10 +7,15 @@ const category = "business";
 const pageLimit = 3;
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
-const latestNews = async (source) => {
-    const url = source ? `${baseUrl}${endpoint}?sources=${source}&apiKey=${apiKey}`: `${baseUrl}${endpoint}?country=${country}&apiKey=${apiKey}`
+const latestNews = async (sourceQuery: string) => {
+  let url: string;
+  if (sourceQuery) {
+    url = `${baseUrl}${endpoint}?sources=${sourceQuery}&apiKey=${apiKey}`;
+  } else {
+    url = `${baseUrl}${endpoint}?country=${country}&apiKey=${apiKey}`;
+  }
+
   const res = await axios.get(url);
-  console.log(url)
   return res.data;
 };
 

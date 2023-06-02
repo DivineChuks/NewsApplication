@@ -1,28 +1,27 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import newsServices from "../services/newsServices";
 
-
 interface NewsState {
-    latestNews: any
-    isLoading: boolean;
-    isSuccess: boolean;
-    isError: boolean;
-    message: string;
-  }
-  
-  const initialState: NewsState = {
-    latestNews: null,
-    isLoading: false,
-    isSuccess: false,
-    isError: false,
-    message: "",
-  };
+  latestNews: any;
+  isLoading: boolean;
+  isSuccess: boolean;
+  isError: boolean;
+  message: string;
+}
 
-export const getLatestNews = createAsyncThunk<NewsState, string | undefined>(
+const initialState: NewsState = {
+  latestNews: null,
+  isLoading: false,
+  isSuccess: false,
+  isError: false,
+  message: "",
+};
+
+export const getLatestNews = createAsyncThunk<NewsState, string>(
   "news",
-  async (source, thunkApi) => {
+  async (sourceQuery, thunkApi) => {
     try {
-      return await newsServices.latestNews(source);
+      return await newsServices.latestNews(sourceQuery);
     } catch (error: any) {
       const message =
         (error.response &&

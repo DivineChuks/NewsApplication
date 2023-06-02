@@ -3,13 +3,15 @@ import type { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
 import { format } from "date-fns";
 
+const MAX_AUTHOR_LENGTH = 20;
+
 const Hero = () => {
   const businessNews = useSelector(
     (state: RootState) => state.business.businessNews?.articles
   );
 
   const heroArticle = useSelector(
-    (state: RootState) => state.business.businessNews?.articles[0]
+    (state: RootState) => state.business.businessNews?.articles[1]
   );
 
   return (
@@ -44,7 +46,9 @@ const Hero = () => {
             </div>
             <div className="flex gap-4 md:mb-[20px] ">
               <span className="text-[#9A9AB0] text-[12px]">
-                {heroArticle?.author} &nbsp;
+                {heroArticle?.author.length > MAX_AUTHOR_LENGTH
+                  ? `${heroArticle?.author.substring(0, MAX_AUTHOR_LENGTH)}...`
+                  : heroArticle?.author}&nbsp;
               </span>
               {heroArticle?.publishedAt && (
                 <span className="text-[#9A9AB0] text-[12px]">
@@ -84,7 +88,9 @@ const Hero = () => {
                 </a>
                 <div>
                   <span className="text-[#9A9AB0] text-[12px]">
-                    {news.author} &nbsp;
+                  {news?.author.length > MAX_AUTHOR_LENGTH
+                  ? `${news?.author.substring(0, MAX_AUTHOR_LENGTH)}...`
+                  : news?.author}&nbsp;
                   </span>
                   <span className="text-[#9A9AB0] text-[12px] mt-2">
                     {format(new Date(news.publishedAt), "MMM dd yyyy")}

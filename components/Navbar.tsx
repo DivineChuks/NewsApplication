@@ -3,10 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaBars } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
+import type { AppDispatch } from "@/redux/store";
+import { useDispatch } from "react-redux";
 import React, { useState } from "react";
-import { BiChevronDown } from "react-icons/bi";
-import { AiOutlineSearch } from "react-icons/ai";
 import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
+import { getLatestNews } from "@/redux/features/latestNewsSlice";
 
 interface Link {
   label: string;
@@ -14,8 +15,9 @@ interface Link {
 }
 
 const Navbar = () => {
+  const dispatch: AppDispatch = useDispatch();
   const [nav, setNav] = useState(false);
-  const [search, setSearch] = useState(false);
+  const [searchNews, setSearchNews] = useState("");
 
   const links: Link[] = [
     {
@@ -35,6 +37,14 @@ const Navbar = () => {
       link: "newsletter",
     },
   ];
+
+  //Search Latest News Function
+
+  const handleSearchNews = () => {
+    dispatch(getLatestNews(searchNews.toLowerCase()));
+    setSearchNews("");
+  };
+
   return (
     <>
       {/* Desktop Menu */}
@@ -74,25 +84,21 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
-          <div className="hidden md:flex gap-8 items-center">
-            {!search && (
-              <AiOutlineSearch
-                size={18}
-                className="cursor-pointer"
-                onClick={() => setSearch(true)}
-              />
-            )}
-            {search && (
-              <input
-                placeholder="Search news"
-                className="border border-gray-200 w-[200px] rounded-lg px-4 py-[10px] focus:outline-none"
-              />
-            )}
-            <button className="bg-lightOrange text-[16px] font-medium px-[24px] py-[12px] rounded-lg text-white">
-              <ScrollLink spy={true} smooth={true} duration={500} to="newsletter">
-                Subscribe
-              </ScrollLink>
+          <div className="hidden md:flex items-center">
+            <input
+              value={searchNews}
+              onChange={(e) => setSearchNews(e.target.value)}
+              placeholder="Search By Source"
+              className="border border-gray-200 w-[200px] rounded-lg rounded-r-none px-4 py-[10px] focus:outline-none"
+            />
+          <ScrollLink to="latest" spy={true} smooth={true} duration={500}>
+            <button
+              onClick={handleSearchNews}
+              className="bg-lightOrange text-[16px] font-medium px-[18px] py-[10px] rounded-lg rounded-l-none text-white"
+            >
+               Search
             </button>
+            </ScrollLink > 
           </div>
           <div className="md:hidden">
             <div className="cursor-pointer" onClick={() => setNav(true)}>
