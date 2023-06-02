@@ -10,7 +10,7 @@ const Footer = () => {
           <p className="text-[16px] text-[#515151] leading-[20px] font-normal w-full md:w-[300px]">
             Stay connected with us to receive the latest updates and exclusive
             offers. Join our newsletter and be the first to know about the most
-            recent news, articles, and promotions. Don't miss out on the
+            recent news, and articles. Don't miss out on the
             exciting content and special deals.
           </p>
         </div>
