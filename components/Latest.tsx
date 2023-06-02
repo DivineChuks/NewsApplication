@@ -5,7 +5,6 @@ import type { RootState } from "@/redux/store";
 import type { AppDispatch } from "@/redux/store";
 import { useSelector, useDispatch } from "react-redux";
 import { getLatestNews } from "@/redux/features/latestNewsSlice";
-import Link from "next/link";
 import { format } from "date-fns";
 
 interface titleProp {
@@ -58,7 +57,7 @@ const Latest: React.FC<titleProp> = ({ title }) => {
   }
 
   return (
-    <div className="py-[6.5rem] mx-[2rem] md:mx-[6.5rem]">
+    <div id="latest" className="py-[6.5rem] mx-[2rem] md:mx-[6.5rem]">
       <div className="flex justify-between items-center mb-[65px]">
         <h2 className="text-[25px] md:text-[31px] font-semibold">{title}</h2>
         <div className="flex gap-2">
@@ -83,7 +82,7 @@ const Latest: React.FC<titleProp> = ({ title }) => {
         {paginatedNews?.map((news) => (
           <div key={news.id} className="mb-4">
             <img
-              src={news?.urlToImage || "/card.png"}
+              src={news?.urlToImage || "/card.jpg"}
               alt="news"
               className="z-5 md:w-[296px] h-[150px] object-cover w-full"
             />

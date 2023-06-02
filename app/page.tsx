@@ -7,6 +7,7 @@ import Hero from "@/components/Hero";
 import Latest from "@/components/Latest";
 import { getLatestNews } from "@/redux/features/latestNewsSlice";
 import { getBusinessNews } from "@/redux/features/businesNewsSlice";
+import Recommended from "@/components/Recommended";
 
 const Home = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -24,6 +25,7 @@ const Home = () => {
     <>
       <Hero />
       <Latest title="Our latest post" />
+      <Recommended />
       <Subscription />
     </>
   );

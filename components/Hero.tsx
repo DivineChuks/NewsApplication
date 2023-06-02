@@ -1,9 +1,6 @@
 import React from "react";
 import type { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
-import { MdOutlineFavoriteBorder } from "react-icons/md";
-import { BiMessageRounded } from "react-icons/bi";
-import { AiOutlineShareAlt } from "react-icons/ai";
 import { format } from "date-fns";
 
 const Hero = () => {
@@ -16,21 +13,29 @@ const Hero = () => {
   );
 
   return (
-    <div className="px-[2rem] md:px-[6.5rem] bg-[#f9f9f9] text-dark py-[6rem] flex-col">
+    <div
+      id="home"
+      className="px-[2rem] md:px-[6.5rem] bg-[#f9f9f9] text-dark py-[6rem] flex-col"
+    >
       <div className="flex flex-col md:flex-row justify-between gap-[6rem] md:gap-[4rem] w-full">
         <div className="flex flex-col w-full md:w-1/2">
           <div>
             <div className="md:mt-[2rem]">
               <img
-                src={heroArticle?.urlToImage}
+                src={heroArticle?.urlToImage || "card.jpg"}
                 className="w-full h-[350px] object-cover"
               />
             </div>
-            <h2 className="text-[1.5rem] md:text-[2rem] mt-[20px] mb-[10px] leading-[2rem] md:leading-[3rem] font-semibold">
-              {heroArticle?.title}
-            </h2>
+            <a
+              href={heroArticle?.url}
+              className="hover:underline cursor-pointer"
+            >
+              <h2 className="text-[1.5rem] md:text-[2rem] mt-[20px] mb-[10px] leading-[2rem] md:leading-[2.5rem] font-semibold">
+                {heroArticle?.title}
+              </h2>
+            </a>
             <div
-              className="flex items-center bg-lightOrange text-white mb-[15px] rounded-0 px-[10px] py-[6px]"
+              className="flex items-center bg-lightOrange text-white mb-[15px] mt-2 rounded-0 px-[10px] py-[6px]"
               style={{ width: "max-content" }}
             >
               <p className="text-white text-[10px] uppercase font-semibold">
@@ -58,7 +63,7 @@ const Hero = () => {
             >
               <div className="">
                 <img
-                  src={news?.urlToImage || "/card.png"}
+                  src={news?.urlToImage || "/card.jpg"}
                   alt="avatar"
                   className="w-full h-[200px] md:h-[150px] object-cover"
                 />

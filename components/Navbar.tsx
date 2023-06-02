@@ -6,6 +6,7 @@ import { FaTimes } from "react-icons/fa";
 import React, { useState } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
+import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 
 interface Link {
   label: string;
@@ -30,8 +31,8 @@ const Navbar = () => {
       link: "recommended",
     },
     {
-      label: "Articles",
-      link: "/articles",
+      label: "Newsletter",
+      link: "newsletter",
     },
   ];
   return (
@@ -43,9 +44,6 @@ const Navbar = () => {
           <p>Innovation</p>
           <p>Science</p>
           <p>Industry</p>
-          <p className="flex items-center cursor-pointer">
-            More <BiChevronDown size={20} />
-          </p>
         </div>
         <div className="hidden md:flex gap-4 text-white text-[16px] font-medium">
           <span>IG</span>
@@ -61,8 +59,18 @@ const Navbar = () => {
           </Link>
           <ul className="md:flex hidden items-center gap-10">
             {links.map((link: Link) => (
-              <li key={link.link} className="text-[16px] font-medium text-dark">
-                {link.label}
+              <li
+                key={link.link}
+                className="text-[16px] cursor-pointer font-medium text-dark"
+              >
+                <ScrollLink
+                  to={link.link}
+                  spy={true}
+                  smooth={true}
+                  duration={500}
+                >
+                  {link.label}
+                </ScrollLink>
               </li>
             ))}
           </ul>
@@ -76,12 +84,14 @@ const Navbar = () => {
             )}
             {search && (
               <input
-                placeholder="search"
+                placeholder="Search news"
                 className="border border-gray-200 w-[200px] rounded-lg px-4 py-[10px] focus:outline-none"
               />
             )}
             <button className="bg-lightOrange text-[16px] font-medium px-[24px] py-[12px] rounded-lg text-white">
-              Subscribe
+              <ScrollLink spy={true} smooth={true} duration={500} to="newsletter">
+                Subscribe
+              </ScrollLink>
             </button>
           </div>
           <div className="md:hidden">
@@ -129,13 +139,19 @@ const Navbar = () => {
                         key={link.link}
                         className="text-[15px] font-medium text-dark py-4 cursor-pointer"
                       >
-                        {link.label}
+                        <ScrollLink
+                          to={link.link}
+                          spy={true}
+                          smooth={true}
+                          duration={500}
+                          onClick={() => setNav(false)}
+                        >
+                          {link.label}
+                        </ScrollLink>
                       </li>
                     ))}
                   </ul>
-                  <button
-                    className="bg-lightOrange text-white px-[24px] py-[12px] w-full rounded-lg font-medium text-[16px]"
-                  >
+                  <button className="bg-lightOrange text-white px-[24px] py-[12px] w-full rounded-lg font-medium text-[16px]">
                     subscribe
                   </button>
                 </div>
